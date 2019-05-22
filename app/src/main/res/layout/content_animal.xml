@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AnimalActivity"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_animal">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lbCodigo"
+        android:enabled="false"
+        android:id="@+id/etCode"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lbDesc"
+        android:id="@+id/etDesc"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spCategoria"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbSave"
+            android:drawableLeft="@drawable/ic_menu_send"
+            android:layout_weight="1"
+            android:id="@+id/btSave"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_menu_send"
+            android:layout_weight="1"
+            android:text="@string/lbCancel"
+            android:id="@+id/btCancel"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:textSize="@dimen/fab_label"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:textAlignment="center"
+        android:text="@string/lbAnimais"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_marginLeft="@dimen/fab_margin_view"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="@string/lbCodigo"/>
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="@string/lbDesc"/>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_marginLeft="@dimen/fab_margin"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/tvCat"
+            android:text="@string/lbCategoria"/>
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lvAnimais"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/colorPrimary"
+        />
+
+</LinearLayout>

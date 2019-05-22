@@ -1,8 +1,6 @@
 package com.edu.fag.zooapp.models;
 
-import com.edu.fag.zooapp.Categoria;
 import com.orm.SugarRecord;
-import com.orm.dsl.MultiUnique;
 import com.orm.dsl.Unique;
 
 import java.util.Date;
@@ -15,4 +13,49 @@ public class Animal extends SugarRecord {
     private Categoria categoria;
     private Date dtRegistro;
     private Date dtAtualizacao;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Date getDtRegistro() {
+        return dtRegistro;
+    }
+
+    public void setDtRegistro(Date dtRegistro) {
+        this.dtRegistro = dtRegistro;
+    }
+
+    public Date getDtAtualizacao() {
+        return dtAtualizacao;
+    }
+
+    public void setDtAtualizacao(Date dtAtualizacao) {
+        this.dtAtualizacao = dtAtualizacao;
+    }
+
+    @Override
+    public String toString() {
+        return descricao+" "+categoria.getDescricao();
+    }
 }

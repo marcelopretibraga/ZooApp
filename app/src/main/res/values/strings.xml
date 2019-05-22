@@ -6,4 +6,15 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="lbSave">Salvar</string>
+    <string name="lbDelete">Remover</string>
+    <string name="lbCodigo">Código</string>
+    <string name="lbDesc">Descrição</string>
+    <string name="lbCancel">Cancelar</string>
+    <string name="lbUpdate">Alterar</string>
+    <string name="lbAnimais">Animais Cadastrados</string>
+    <string name="lbCategoria">Categoria</string>
+
+    <string name="title_activity_categoria">CategoriaActivity</string>
+    <string name="title_activity_animal">AnimalActivity</string>
 </resources>

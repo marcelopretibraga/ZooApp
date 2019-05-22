@@ -9,11 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".AnimalActivity"
+            android:label="@string/title_activity_animal"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".CategoriaActivity"
+            android:label="@string/title_activity_categoria"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
 
-        <meta-data android:name="DATABASE" android:value="zoo.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.edu.fag.zooapp" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="zoo.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.edu.fag.zooapp" />
 
         <activity
             android:name=".MainActivity"

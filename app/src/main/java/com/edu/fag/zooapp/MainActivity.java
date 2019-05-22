@@ -1,8 +1,7 @@
 package com.edu.fag.zooapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
-import com.edu.fag.zooapp.models.Animal;
+import com.edu.fag.zooapp.models.Categoria;
 import com.orm.SugarContext;
-import com.orm.SugarRecord;
 
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Spinner spCategoria;
     private ArrayAdapter<Categoria> categoriaAdapter;
+    private Button btSalvar, btRemover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +34,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         SugarContext.init(this);//Responsável por iniciar o Sugar
 
-        spCategoria = findViewById(R.id.spCategoria);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        carregaComponentes();
+        loadList();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,24 +47,50 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void carregaComponentes() {
+        spCategoria = findViewById(R.id.spCategoria);
+        btRemover = findViewById(R.id.btCancel);
+        btSalvar = findViewById(R.id.btSave);
+        carregaEventos();
+    }
+
+    private void carregaEventos(){
+        btSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        });
+
+        btRemover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete();
+            }
+        });
+    }
+
     private void save() {
         Categoria last = Categoria.last(Categoria.class);
+        //Last pega o ultimo registro e Soma um
+        int codigo = last != null ? last.getCodigo()+1 : 1;
 
-        Categoria  categoria = new Categoria(last.getCodigo()+1, "Categoria 1", true);
+        Categoria  categoria = new Categoria(codigo, "Categoria "+codigo, true);
         categoria.save();//Metodo responsável por salvar o registro
 
         loadList();
     }
 
     private void delete(){
+        //Recupera o item selecionado e Remove
         Categoria catRemove = (Categoria) spCategoria.getSelectedItem();
-        catRemove.delete();
+        if (catRemove != null)
+            catRemove.delete();
         loadList();
-
     }
 
     private void loadList(){
-        List<Categoria> categorias = Categoria.listAll(Categoria.class);
+        List<Categoria> categorias = Categoria.listAll(Categoria.class, "codigo desc");
         categoriaAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.support_simple_spinner_dropdown_item,
                 categorias);
         spCategoria.setAdapter(categoriaAdapter);
@@ -117,9 +135,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, CategoriaActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

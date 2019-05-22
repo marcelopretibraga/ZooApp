@@ -1,7 +1,9 @@
-package com.edu.fag.zooapp;
+package com.edu.fag.zooapp.models;
 
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
+
+import java.util.Objects;
 
 public class Categoria extends SugarRecord {
     @Unique
@@ -45,5 +47,18 @@ public class Categoria extends SugarRecord {
     @Override
     public String toString() {
         return codigo + " - "+ descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Categoria)) return false;
+        Categoria categoria = (Categoria) o;
+        return codigo == categoria.codigo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo);
     }
 }
