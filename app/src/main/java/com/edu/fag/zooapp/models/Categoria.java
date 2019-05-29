@@ -3,9 +3,10 @@ package com.edu.fag.zooapp.models;
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Categoria extends SugarRecord {
+public class Categoria extends SugarRecord implements Serializable {
     @Unique
     private int codigo;
     private String descricao;

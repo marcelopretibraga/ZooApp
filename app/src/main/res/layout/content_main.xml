@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btCancel"
         android:text="@string/lbCancel"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btVacina"
+        android:text="@string/lbVacina"/>
 </LinearLayout>

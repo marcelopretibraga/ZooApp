@@ -3,16 +3,20 @@ package com.edu.fag.zooapp.models;
 import com.orm.SugarRecord;
 import com.orm.dsl.Unique;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-//@MultiUnique("codigo, outro")
-public class Animal extends SugarRecord {
+//@MultiUnique("codigo, descricao")
+public class Animal extends SugarRecord implements Serializable {
     @Unique
     private int codigo;
     private String descricao;
     private Categoria categoria;
     private Date dtRegistro;
     private Date dtAtualizacao;
+    private List<Vacina> vacinaList = new ArrayList<Vacina>();
 
     public int getCodigo() {
         return codigo;
@@ -52,6 +56,11 @@ public class Animal extends SugarRecord {
 
     public void setDtAtualizacao(Date dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
+    }
+
+    public List<Vacina> getVacinaList() {
+        vacinaList = Vacina.find(Vacina.class, " animal = "+getId());
+        return vacinaList;
     }
 
     @Override

@@ -15,16 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.edu.fag.zooapp.models.Animal;
 import com.edu.fag.zooapp.models.Categoria;
+import com.edu.fag.zooapp.models.Vacina;
 import com.orm.SugarContext;
 
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Spinner spCategoria;
     private ArrayAdapter<Categoria> categoriaAdapter;
-    private Button btSalvar, btRemover;
+    private Button btSalvar, btRemover, btVacina;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         spCategoria = findViewById(R.id.spCategoria);
         btRemover = findViewById(R.id.btCancel);
         btSalvar = findViewById(R.id.btSave);
+        btVacina = findViewById(R.id.btVacina);
         carregaEventos();
     }
 
@@ -68,6 +72,37 @@ public class MainActivity extends AppCompatActivity
                 delete();
             }
         });
+
+        btVacina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadVacina();
+            }
+        });
+    }
+
+    private void loadVacina() {
+        Animal animal = Animal.first(Animal.class);
+
+        Vacina last = Vacina.last(Vacina.class);
+        //Last pega o ultimo registro e Soma um
+        int registro = last != null ? last.getRegistro()+1 : 1;
+
+        Vacina vacina = new Vacina();
+        vacina.setDsVacina("Vacina "+registro);
+        vacina.setDtVacina(new Date());
+        vacina.setPsAnimal(10.0);
+        vacina.setQtVacina(0.5);
+        vacina.setRegistro(registro);
+        vacina.setDsObservacao("Obs "+registro);
+        vacina.setAnimal(animal);
+        vacina.save();
+
+        animal = Animal.first(Animal.class);
+        animal.getVacinaList();
+        System.out.println(animal.getVacinaList());
+
+
     }
 
     private void save() {

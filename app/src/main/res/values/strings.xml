@@ -14,6 +14,8 @@
     <string name="lbUpdate">Alterar</string>
     <string name="lbAnimais">Animais Cadastrados</string>
     <string name="lbCategoria">Categoria</string>
+    <string name="lbVacina">Vacina</string>
+
 
     <string name="title_activity_categoria">CategoriaActivity</string>
     <string name="title_activity_animal">AnimalActivity</string>
