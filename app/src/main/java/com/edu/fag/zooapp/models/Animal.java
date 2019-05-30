@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@MultiUnique("codigo, descricao")
+//@MultiUnique("codigo, descricao")//Comentário teste Commit
 public class Animal extends SugarRecord implements Serializable {
     @Unique
     private int codigo;
